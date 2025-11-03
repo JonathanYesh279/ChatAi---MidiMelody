@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
 import type { Request, Response } from 'express';
-import { chatWithAI } from './openaiService.js';
 import { composeFromCommand } from './compositionService.js';
 import path from 'path';
 
@@ -10,18 +9,6 @@ app.use(express.json());
 
 app.use('/output', express.static(path.join(process.cwd(), 'output')));
 
-app.post('/chat', async (req: Request, res: Response) => {
-  const { message } = req.body || {};
-
-  if (!message) {
-    return res.status(400).json({
-      error: 'Message is required',
-    });
-  }
-
-  const aiResponse = await chatWithAI(message);
-  res.json({ reply: aiResponse });
-});
 
 app.post('/compose', async (req: Request, res: Response) => {
   const { command } = req.body || {};

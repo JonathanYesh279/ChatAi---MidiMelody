@@ -60,7 +60,7 @@ export async function composeFromCommand(
     const { root, scale, bars } = parsed;
 
     console.log(
-      `🎵 Asking AI to compose ${bars}-bar melody in ${root} ${scale}...`
+      `Asking AI to compose ${bars}-bar melody in ${root} ${scale}...`
     );
 
     const aiNotes = await generateMelodyWithAI(root, scale, bars);
